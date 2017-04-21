@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue-router的使用</title>
+    <link rel="stylesheet" href="../src/css/notice.css">
+  </head>
+  <body>
+    <div id="app">
+      <h1>Hello app</h1>
+      <p>
+        <!-- <router-link to='/foo'>Go to Foo</router-link>
+        <router-link to='/bar'>Go to Bar</router-link> -->
+      </p>
+    </div>
+    <div id="notice" class="notice">
+      <div id="notice-tit" class="notice-tit">
+        <ul>
+          <li  class="select"><a href="#">公告</a></li>
+          <li><a href="#">规则</a></li>
+          <li><a href="#">论坛</a></li>
+          <li><a href="#">安全</a></li>
+          <li><a href="#">公益</a></li>
+        </ul>
+      </div>
+      <div id="notice-con" class="notice-con">
+        <div class="mod">
+          <ul>
+            <li><a href="#">息根据您的兴趣推荐</a></li>
+            <li><a href="#">带学生ktv上课</a></li>
+            <li><a href="#">白百何被曝停工作</a></li>
+            <li><a href="#">济南最严限购来袭</a></li>
+          </ul>
+        </div>
+        <div class="mod" style="display:none">
+          <ul>
+            <li><a href="#">海警执法船沉没</a></li>
+            <li><a href="#">农民采野草获刑</a></li>
+            <li><a href="#">日名模大婚惹争议</a></li>
+            <li><a href="#">德国男子婚礼失踪</a></li>
+          </ul>
+        </div>
+        <div class="mod" style="display:none">
+          <ul>
+            <li><a href="#">直播杀人男子自杀</a></li>
+            <li><a href="#">苏州太湖大桥车祸</a></li>
+            <li><a href="#">热浪袭击巴基斯坦</a></li>
+            <li><a href="#">女孩泡澡时溺水</a></li>
+          </ul>
+        </div>
+        <div class="mod" style="display:none">
+          <ul>
+            <li><a href="#">用到二次开发系列课程</a></li>
+            <li><a href="#">埃及考古重大的新发现</a></li>
+            <li><a href="#">取款30万被抢</a></li>
+            <li><a href="#">唐国强再演伟人</a></li>
+          </ul>
+      </div>
+      <div class="mod" style="display:none">
+        <ul>
+          <li><a href="#">你需要这份简历</a></li>
+          <li><a href="#">学费背后的惊人内幕</a></li>
+          <li><a href="#">取款30万被抢</a></li>
+          <li><a href="#">唐国强再演伟人</a></li>
+        </ul>
+      </div>
+    </div>
+    <router-view></router-view>
+
+    <script src="../dist/vue.js"></script>
+    <script src="../dist/vue-router.js"></script>
+    <script src="../dist/my-type.js"></script>
+  </body>
+</html>
