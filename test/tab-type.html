@@ -74,11 +74,17 @@ window.onload=function(){
      for(var i = 0;i < titles.length;i++){
        titles[i].id = i;
        menuUl[i].id = i;
+       var timer = null;
 
       titles[i].onmouseover = function(){
-        menuUl[this.id].style.display = "block";
+        var that = this
+        timer = setTimeout(function(){
+          console.log(this);
+          menuUl[that.id].style.display = 'block'
+        },300);
       }
       titles[i].onmouseout = function(){
+        clearTimeout(timer)
         menuUl[this.id].style.display = "none";
       }
 
