@@ -4,11 +4,14 @@
     <meta charset="utf-8">
     <title>canvas</title>
     <style media="screen">
-      canvas{border: 1px solid }
+      canvas{border: 1px solid;float: left;margin: 20px;}
     </style>
   </head>
   <body>
-    <canvas id="canvas" width="300" height="300">
+    <canvas id="canvas" width="600" height="500">
+      Your browser does not support the canvas element.
+    </canvas>
+    <canvas id="mycanvas" width="400" height="500">
       Your browser does not support the canvas element.
     </canvas>
   </body>
@@ -18,15 +21,94 @@
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 
+    //保存当前绘图状态
+    context.save()
+
+    //向右下方移动绘图上下文
+    context.translate(20,-100);
+
+    context.lineWidth = 8;
+    context.lineJoin = 'round';
+
     //用绝对坐标来创建一条路径
     context.beginPath();
-    context.moveTo(100,100);
-    context.lineTo(200,200);
+    context.moveTo(140,135);
 
-    //将这条线绘制到canvas上
+    context.lineTo(100,170);
+    context.lineTo(120,170);
+
+    context.lineTo(80,210);
+    context.lineTo(105,210);
+
+    context.lineTo(55,270);
+    context.lineTo(225,270);
+
+    context.lineTo(175,210);
+    context.lineTo(200,210);
+
+    context.lineTo(158,170);
+    context.lineTo(180,170);
+    context.strokeStyle = '#663300'
+
+    context.fillStyle = '#339900';
+    context.closePath();
+    //将这条线绘制到canvas上\
+    context.fill();
     context.stroke();
+
+    context.beginPath();
+    var tGradient = context.createLinearGradient(130,270,150,380);
+    tGradient.addColorStop(0,'#663300');
+    tGradient.addColorStop(0.4,'#996600');
+    tGradient.addColorStop(1,'#552200');
+
+    context.fillStyle = tGradient;
+    context.fillRect(130,270,20,110);
+
+    context.closePath();
+    //将这条线绘制到canvas上
+
+    context.fill();
+
+    context.save();
+    context.translate(50,550);
+    context.beginPath();
+    context.moveTo(-70,0);
+    context.quadraticCurveTo(170,-30,260,-190);
+
+    context.quadraticCurveTo(360,-400,650,-390);
+
+    context.strokeStyle = '#663336'
+    context.lineWidth = 25
+    context.stroke();
+
+
+
+    context.restore();
   }
 
+
   window.addEventListener("load",drawDiagonal,true)
+
+  function drawLinear(){
+    var mycanvas = document.getElementById('mycanvas');
+    var mycontext = mycanvas.getContext('2d');
+    mycontext.save()
+    var tGradient = mycontext.createLinearGradient(0,0,50,350);
+    tGradient.addColorStop(0,'#663300');
+    tGradient.addColorStop(0.4,'#996600');
+    tGradient.addColorStop(1,'#552200');
+
+    mycontext.fillStyle = tGradient;
+    mycontext.beginPath();
+    mycontext.fillRect(0,20,50,450);
+    mycontext.closePath();
+
+    mycontext.strokeStyle = tGradient;
+    mycontext.lineWidth = 45
+    mycontext.strokeRect(120,150,200,200)
+    console.log("qq");
+  }
+    window.addEventListener("load",drawLinear,true)
   </script>
 </html>
