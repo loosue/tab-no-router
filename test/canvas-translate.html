@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>save && restore</title>
+    <style media="screen">
+      canvas{border: 1px solid #333;}
+    </style>
+  </head>
+  <body>
+    <img src='../src/img/0.jpg' id="purity" />
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas1" width="300" height="300"></canvas>
+  </body>
+  <script type="text/javascript" src="../dist/square.js">
+
+  </script>
+  <script type="text/javascript">
+    window.onload = function(){
+      drawSquare();
+      var canvas1 = document.getElementById("canvas1"),
+          context1 = canvas1.getContext('2d');
+          drawPoint(context1,50,50,6)
+    }
+    function drawPoint(context,x,y,radius){
+      context.fillStyle = getColor(radius);
+      radius = Math.sqrt(radius)*6;
+
+      context.beginPath();
+      context.arc(x,y,radius,0,Math.PI*2,true);
+
+      context.closePath();
+      context.fill();
+    }
+
+    function getColor(intensity){
+      var color = ['#072933','#2e4045','#8c593b','#b2814e','#fac268','#fad237']
+      return color[Math.floor(intensity/2)]
+    }
+  </script>
+</html>
