@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTML 5 Audio</title>
+    <style media="screen">
+    button {
+        padding: 8px 24px;
+        margin: 10px;
+        width: 100px;
+        font: 600 16px cursive;
+        color: #7d7c7a;
+        background: aliceblue;
+        border: 2px solid rgba(136, 134, 134, 0.18);
+        border-radius: 12px;
+        border-style: outset;
+        outline: none;
+        box-shadow: 5px -4px 1px lightslategrey;
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="sound" src="just_right.mp3">
+      An audio clip about work background music
+    </audio>
+    <button type="button" id="toggle" name="button">Play</button>
+  </body>
+  <script type="text/javascript">
+    var music = document.getElementById("sound"),
+        toggle = document.getElementById("toggle");
+
+        toggle.onclick = function(){
+          if(music.paused){
+            music.currentTime = 100;  //设置媒体开始播放的时间
+            music.volume=0.3;   //设置媒体播放的音量
+            music.play();
+
+            toggle.innerHTML = 'Paused';
+            console.log(music.duration);
+          }else{
+            music.pause();
+            toggle.innerHTML = 'Play';
+          }
+        }
+  </script>
+</html>
