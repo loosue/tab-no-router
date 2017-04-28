@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTML 5 video</title>
+    <style media="screen">
+      canvas{border: 1px solid lightgrey;}
+    </style>
+  </head>
+  <body>
+    <video id="movies" autoplay autobuffer="true" width="576px" height="324px"
+          oncanplay="startVideo()" onended="stopTimeline()"
+          onmouseover="this.play()" onmouseout="this.pause()"
+          src="1.mov">
+    </video>
+    <canvas id="timeline" width="1300" height="880"></canvas>
+  </body>
+  <script type="text/javascript">
+      var updateInterval = 5200,
+          frameWidth = 317,
+          frameHeight = 178,
+          frameRows = 4,
+          framecolumns = 4,
+          frameGrid = frameRows*framecolumns;
+
+      var frameCount = 0;
+      var intervalId;
+      var videoStarted = false;
+
+      var video = document.getElementById("movies"),
+          timeline = document.getElementById("timeline");
+          console.log(video.width);
+      timeline.onclick = function(event){
+        var offX = event.layerX - timeline.offsetLeft,
+            offY = event.layerY - timeline.offsetTop;
+        console.log(offX + " " + offY);
+
+        var clickFrame = Math.floor(offY / frameHeight) * frameRows;
+        clickFrame += Math.floor(offX / frameWidth);
+
+        var seekedFrame = (((Math.floor(frameCount / frameGrid)) * frameGrid) + clickFrame);
+
+        if(clickFrame > (frameCount % 81))
+        seekedFrame -= frameGrid;
+
+        if(seekedFrame < 0)
+          return
+
+        video.currentTime = seekedFrame * updateInterval / 1000;
+
+        frameCount = seekedFrame;
+      }
+
+    function updateFrame(){
+      var video = document.getElementById("movies"),
+          timeline = document.getElementById("timeline"),
+          ctx = timeline.getContext('2d');
+
+      var framePosition = frameCount % frameGrid,
+          frameX = (framePosition % framecolumns) * frameWidth,
+          frameY = (Math.floor(framePosition / frameRows)) * frameHeight;
+      console.log("frameX = " + frameX +' ' + "frameY = " + frameY);
+
+      ctx.drawImage(video,0,0,1920,1080,frameX,frameY,frameWidth,frameHeight);
+
+      frameCount++;
+    }
+
+    function startVideo(){
+      if(videoStarted)
+        return;
+      videoStarted = true;
+
+      updateFrame();
+      intervalId = setInterval(updateFrame,updateInterval)
+    }
+
+    function stopTimeline(){
+      clearInterval(intervalId)
+    }
+
+  </script>
+</html>
